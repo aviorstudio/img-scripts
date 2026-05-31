@@ -15,18 +15,14 @@ python -m pip install -e .
 Run project-specific scripts from the target game repository root, or pass `--project-root` explicitly.
 
 ```sh
-# Generic connected-component sheet cutters
-python ../img-scripts/scripts/cut_connected_sprite_sheet.py --input sheet.png --out-dir out
-python ../img-scripts/scripts/cut_transparent_sheet.py --input sheet.png --out-dir out
-python ../img-scripts/scripts/extract_sprites.py sheet.png out
+python ../img-scripts/scripts/cut_sheet.py sheet.png --out-dir out
 python ../img-scripts/scripts/image_resize.py image.png
 
 # Prizm
-python ../img-scripts/scripts/cut_sprite_sheets.py --project-root .
-python ../img-scripts/scripts/organize_cut_assets.py --project-root .
+python ../img-scripts/scripts/cut_sheet.py --project-root .
 
-# Castledrop
-python ../img-scripts/scripts/generate_tower_effect_assets.py --project-root .
+# Fixed-grid sheets
+python ../img-scripts/scripts/cut_sheet.py sheet.png --grid 4x3 --out-dir out
 
 # Revik
 python ../img-scripts/scripts/generate_terrain_tiles.py --project-root . grass forest
@@ -36,11 +32,6 @@ python ../img-scripts/scripts/generate_terrain_tiles.py --project-root . grass f
 
 | Script | Origin | Notes |
 |---|---|---|
-| `scripts/cut_connected_sprite_sheet.py` | Castledrop | Feature-rich connected alpha island cutter with grid/background options. |
-| `scripts/cut_transparent_sheet.py` | Castledrop | Transparent sheet cutter with dilation/grouping. |
-| `scripts/extract_sprites.py` | Revik | Pillow connected-component sprite extractor with optional grid sorting. |
-| `scripts/image_resize.py` | Revik | Pillow force-resize to exactly 512x512 while preserving the source extension. |
-| `scripts/cut_sprite_sheets.py` | Prizm | Batch transparent sheet cutter with auto alpha threshold. |
-| `scripts/organize_cut_assets.py` | Prizm | Prizm-specific cut asset organizer. |
-| `scripts/generate_tower_effect_assets.py` | Castledrop | Castledrop-specific tower effect generator. |
+| `scripts/cut_sheet.py` | Shared | Sprite sheet cutter with alpha/background detection, connected components, optional grid mode, auto threshold, padding, and manifest output. |
 | `scripts/generate_terrain_tiles.py` | Revik | Revik-specific terrain hex tile generator. |
+| `scripts/image_resize.py` | Revik | Pillow force-resize to exactly 512x512 while preserving the source extension. |
