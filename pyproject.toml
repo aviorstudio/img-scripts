@@ -1,0 +1,8 @@
+[project]
+name = "avior-img-scripts"
+version = "0.1.0"
+description = "Shared Avior Studio image automation scripts"
+requires-python = ">=3.12"
+dependencies = [
+  "Pillow>=10",
+]
